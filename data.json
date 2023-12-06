@@ -1,0 +1,65 @@
+[
+  {
+    "model": "main.category",
+    "pk": 1,
+    "fields": {
+      "name": "Овощи",
+      "description": ""
+    }
+  },
+  {
+    "model": "main.category",
+    "pk": 2,
+    "fields": {
+      "name": "Фрукты",
+      "description": ""
+    }
+  },
+  {
+    "model": "main.category",
+    "pk": 3,
+    "fields": {
+      "name": "Ягода",
+      "description": ""
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 4,
+    "fields": {
+      "name": "Груша",
+      "description": "",
+      "photo": "",
+      "category": 2,
+      "price": 20,
+      "create_data": null,
+      "last_change_data": null
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 5,
+    "fields": {
+      "name": "Огурец",
+      "description": "",
+      "photo": "",
+      "category": 1,
+      "price": 10,
+      "create_data": null,
+      "last_change_data": null
+    }
+  },
+  {
+    "model": "main.product",
+    "pk": 6,
+    "fields": {
+      "name": "Клубника",
+      "description": "",
+      "photo": "",
+      "category": 3,
+      "price": 70,
+      "create_data": null,
+      "last_change_data": null
+    }
+  }
+]
