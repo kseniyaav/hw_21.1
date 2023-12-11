@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('price', models.IntegerField(verbose_name='Цена')),
                 ('create_data', models.DateTimeField(blank=True, null=True, verbose_name='Дата создания')),
                 ('last_change_data', models.DateTimeField(blank=True, null=True, verbose_name='Дата изменения')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.category', verbose_name='Категория')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.category', verbose_name='Категория')),
             ],
             options={
                 'verbose_name': 'товар',
