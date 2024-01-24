@@ -1,10 +1,12 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
+from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-from catalog.forms import ProductForm, VersionForm
-from catalog.models import Product, Version
+from catalog.forms import ProductForm, VersionForm, ModeratorForm
+from catalog.models import Product, Version, Category
 
 
 class ProductListView(ListView):
@@ -45,16 +47,29 @@ class ProductDetailView(DetailView):
 #     }
 #     return render(request, 'catalog/product_detail.html', context)
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:index')
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
 
-class ProductUpdateView(UpdateView):
+        return super().form_valid(form)
+
+
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Product
-    form_class = ProductForm
+    permission_required = 'catalog.change_product'
     success_url = reverse_lazy('catalog:index')
+
+    def get_form_class(self):
+        if self.request.user.is_superuser:
+            return ProductForm
+        else:
+            return ModeratorForm
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -75,3 +90,13 @@ class ProductUpdateView(UpdateView):
 
         return super().form_valid(form)
 
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.owner != self.request.user:
+            raise Http404
+        return self.object
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'catalog/category_list.html'

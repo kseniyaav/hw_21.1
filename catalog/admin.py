@@ -19,4 +19,3 @@ class ProductAdmin(admin.ModelAdmin):
 class VersionAdmin(admin.ModelAdmin):
     list_display = ('product', 'name', 'number', 'is_active',)
     list_filter = ('is_active',)
-

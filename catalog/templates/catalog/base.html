@@ -1,5 +1,5 @@
-<!doctype html>
 {% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -14,13 +14,14 @@
 {% block content %}
 {% endblock %}
 
+
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
-        <div class="col-12 col-md">
+        <div class="col-3 col-md">
             SkyStore
             <small class="d-block mb-3 text-muted">&copy; 2023</small>
         </div>
-        <div class="col-6 col-md">
+        <div class="col-3 col-md">
             <h5>Категории</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="#">Рассылки</a></li>
@@ -30,13 +31,13 @@
                 <li><a class="text-muted" href="#">Микросервисы</a></li>
             </ul>
         </div>
-        <div class="col-6 col-md">
+        <div class="col-3 col-md">
             <h5>Дополнительно</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="#">Мы пишем</a></li>
             </ul>
         </div>
-        <div class="col-6 col-md">
+        <div class="col-3 col-md">
             <h5>О нас</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="text-muted" href="{% url 'catalog:contacts' %}">Контакты</a></li>
@@ -44,6 +45,7 @@
         </div>
     </div>
 </footer>
+
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>

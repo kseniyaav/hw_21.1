@@ -13,10 +13,13 @@
                         <h5 class="card-title">{{ object.name|title }}</h5>
                         <p class="card-text">{{ object.description }}</p>
                         <p class="card-text">Цена за кг - {{ object.price }} рублей</p>
+                        <p class="card-text">{{ object.owner|default:"Без пользователя" }}</p>
                     </div>
+                    {% if perms.catalog.change_product %}
                     <div class="card-footer">
                         <a class="btn btn-primary" href="{% url 'catalog:update_product' object.pk %}">Редактировать</a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
 

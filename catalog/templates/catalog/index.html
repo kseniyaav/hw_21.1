@@ -5,7 +5,11 @@
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Каталог</h1>
 </div>
-
+{% if user.is_superuser %}
+<a class="p-2 btn btn-outline-primary mb-5" style="margin-left: 90px;"
+   href="{% url 'catalog:create_product' %}">Добавить товар
+</a>
+{% endif %}
 <div class="container">
     <div class="row">
         {% for object in object_list %}
@@ -17,11 +21,16 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ object.name|title }}</h5>
                     <p class="card-text">{{ object.description|truncatewords:4 }}</p>
-                    <a href="{% url 'catalog:product' object.pk %}" class="btn btn-primary">Подробнее</a>
+                    <a href="{% url 'catalog:view_product' object.pk %}" class="btn btn-primary">Подробнее</a>
+                    <br>
+                    <br>
+                    {% if object.active_version %}
+                    {{ object.active_version }}
+                    {% endif %}
+
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-
     {% endblock %}

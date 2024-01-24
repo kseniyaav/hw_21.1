@@ -1,7 +1,33 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
-    <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
-        <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
+<header>
+
+    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+        <div class="bg-dark p-4">
+            <div class="col-sm-4 offset-md-1 py-4">
+                <h4 class="text-white">Меню</h4>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'catalog:index' %}" class="text-white">Каталог</a></li>
+                    <li><a href="{% url 'catalog:list_category' %}" class="text-white">Категории товаров</a></li>
+                    <li><a href="{% url 'blog:list' %}" class="text-white">Блог</a></li>
+                    <li><a href="{% url 'catalog:contacts' %}" class="text-white">Контакты</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'users:profile' %}" class="text-white">Профиль</a></li>
+                        <li><a href="{% url 'users:logout' %}" class="text-white">Выход</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}" class="text-white">Вход</a></li>
+                        <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
     </nav>
-</div>
+</header>
